@@ -158,7 +158,7 @@ export function CopySecretsSheet({
               {repoSearch ? "No repos match" : "No repos found"}
             </div>
           ) : (
-            <div className="grid gap-1.5 flex-1 overflow-y-auto min-h-0">
+            <div className="grid content-start gap-1.5 flex-1 overflow-y-auto min-h-0">
               {repos.map((r) => (
                 <button
                   key={r.id}

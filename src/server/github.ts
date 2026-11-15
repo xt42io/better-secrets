@@ -48,15 +48,21 @@ export async function listRepoSecrets(
   owner: string,
   repo: string
 ) {
-  const res = await githubFetch(
-    token,
-    `/repos/${owner}/${repo}/actions/secrets`
-  );
-  const data = (await res.json()) as {
-    total_count: number;
-    secrets: GitHubSecret[];
-  };
-  return data;
+  const secrets: GitHubSecret[] = [];
+  for (let page = 1; ; page++) {
+    const res = await githubFetch(
+      token,
+      `/repos/${owner}/${repo}/actions/secrets?per_page=100&page=${page}`
+    );
+    const data = (await res.json()) as {
+      total_count: number;
+      secrets: GitHubSecret[];
+    };
+    secrets.push(...data.secrets);
+    if (data.secrets.length === 0 || secrets.length >= data.total_count) {
+      return { total_count: data.total_count, secrets };
+    }
+  }
 }
 
 export async function getRepoPublicKey(

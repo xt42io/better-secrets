@@ -158,7 +158,7 @@ function SecretsPage() {
                 onClick={() => setShowCopy(true)}
                 className="flex items-center gap-1.5 border border-stone-600 text-stone-300 px-4 py-2 rounded-md text-sm font-bold hover:border-stone-400 transition-colors"
               >
-                <Copy className="w-4 h-4" /> Copy to repo
+                <Copy className="w-4 h-4" /> Copy to repos
               </button>
               <button
                 onClick={() => setDeleteTarget([...selected])}

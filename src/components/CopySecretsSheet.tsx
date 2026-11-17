@@ -211,7 +211,8 @@ export function CopySecretsSheet({
           <button
             type="button"
             onClick={() => setConfirming(false)}
-            className="flex items-center gap-1.5 text-xs text-stone-500 hover:text-stone-300 transition-colors mb-2"
+            disabled={copyMutation.isPending}
+            className="flex items-center gap-1.5 text-xs text-stone-500 hover:text-stone-300 transition-colors mb-2 disabled:opacity-50 disabled:pointer-events-none"
           >
             <ArrowLeft className="w-3.5 h-3.5" /> Change repos
           </button>
